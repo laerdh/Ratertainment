@@ -26,6 +26,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <td></td>
                         <td><b>Title</b></td>
                         <td><b>Year</b></td>
                         <td><b>Category</b></td>
@@ -36,10 +37,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="movie in movies">
+                        <td><img src="{{ movie.image_url }}" width="80px" height="80px"/></td>
                         <td>{{ movie.title }}</td>
                         <td>{{ movie.year }}</td>
                         <td>{{ movie.category }}</td>
-                        <td>{{ movie.votes }}</td>
+                        <td>{{ movie.likes }}</td>
                         <td>
                             <button type="button" class="btn btn-info" aria-label="Like">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
