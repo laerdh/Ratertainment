@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Raitertainment</title>
+        
+        <!-- Load CSS -->
+        <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+        
+        <!-- Load JS -->
+        <script src="libs/angular/angular.min.js"></script>
+        <script src="libs/angular-route/angular-route.min.js"></script>
+        <script src="libs/jquery/dist/jquery.min.js"></script>
+        s
+    </head>
+    <body ng-app="Ratertainment" ng-controller="MainController">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><b>R</b>atertainment</a>
+                </div>
+                <button type="button" class="btn btn-default navbar-btn" id="signIn">Sign in</button>
+                <p class="navbar-text pull-right" id="loginState">User signed in</p>
+            </nav>
+            
+            <!-- Angular Content -->
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td><b>Title</b></td>
+                        <td><b>Year</b></td>
+                        <td><b>Category</b></td>
+                        <td><b>Likes</b></td>
+                        <td><b>Your opinion</b></td>
+                        <td><b>Favorite</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="movie in movies">
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.year }}</td>
+                        <td>{{ movie.category }}</td>
+                        <td>{{ movie.votes }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" aria-label="Like">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                            </button>
+                            <button type="button" class="btn btn-info" aria-label="Dislike">
+                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                            </button>
+                        </td>
+                        <td><button type="button" class="btn btn-warning" aria-label="Favorite">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Modules -->
+        <script src="js/app.js"></script>
+        
+        <!-- Controllers -->
+        <script src="js/controllers/MainController.js"></script>
+        
+        <!-- Services -->
+        <script src="js/services/MovieService.js"></script>
+        
+        <!-- Just for fun -->
+        <script>
+            $(document).ready(function() {
+                $('#loginState').hide();
+                
+                $('#signIn').click(function(e) {
+                    $(this).text(function(i, text) {
+                        return text === "Sign in" ? "Log out" : "Sign in";
+                    });
+                    
+                    $('#loginState').toggle();
+                });
+            });
+        </script>
+    </body>
+</html>
