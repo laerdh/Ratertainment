@@ -6,6 +6,7 @@
         
         <!-- Load CSS -->
         <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
         
         <!-- Load JS -->
         <script src="libs/angular/angular.min.js"></script>
@@ -43,19 +44,25 @@
                         <td>{{ movie.category }}</td>
                         <td>{{ movie.likes }}</td>
                         <td>
-                            <button type="button" class="btn btn-info" aria-label="Like">
+                            <button type="button" class="like btn btn-info" aria-label="Like">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                             </button>
-                            <button type="button" class="btn btn-info" aria-label="Dislike">
+                            <button type="button" class="dislike btn btn-info" aria-label="Dislike">
                                 <span class="glyphicon glyphicon-thumbs-down"></span>
                             </button>
                         </td>
-                        <td><button type="button" class="btn btn-warning" aria-label="Favorite">
+                        <td><button type="button" class="favbutton btn btn-info" aria-label="Favorite">
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
         </div>
         
         <!-- Modules -->
@@ -72,12 +79,28 @@
             $(document).ready(function() {
                 $('#loginState').hide();
                 
+                // Dummy functionality
+                // Just for testing purposes
                 $('#signIn').click(function(e) {
                     $(this).text(function(i, text) {
                         return text === "Sign in" ? "Log out" : "Sign in";
                     });
                     
                     $('#loginState').toggle();
+                });
+                
+
+                $(".favbutton").click(function() {
+                    alert('Added to favorites');
+                    $(this).removeClass("btn-info").addClass("btn-warning");
+                });
+                
+                $(".like").click(function() {
+                    $(this).removeClass("btn-info").addClass("btn-success");
+                });
+                
+                $(".dislike").click(function() {
+                    $(this).removeClass("btn-info").addClass("btn-danger");
                 });
             });
         </script>
