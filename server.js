@@ -39,7 +39,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 // routes
-require('./app/routes')(app, db);
+require('./app/routes')(app, db, mongojs);
 
 
 // start app

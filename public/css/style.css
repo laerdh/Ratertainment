@@ -3,3 +3,7 @@
 html {
     margin: 10px;
 }
+
+.navbar > button {
+    margin-right: 3px;
+}
