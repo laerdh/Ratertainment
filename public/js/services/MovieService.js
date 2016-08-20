@@ -7,10 +7,18 @@ app.factory('moviesService', ['$http', function ($http) {
         get : function() {
             return $http.get('/movies');
         },
+        
+        find : function(id) {
+            return $http.get('/movies/' + id)
+        },
            
         // post movies
         create : function(data) {
             return $http.post('/movies', data);
+        },
+        
+        update : function(id, data) {
+            return $http.put('/movies/' + id, data);
         },
         
         // delete movie

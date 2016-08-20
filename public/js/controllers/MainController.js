@@ -19,8 +19,19 @@ app.controller('MainController', ['$scope', 'moviesService', function($scope, mo
     }
     
     $scope.deleteMovie = function(id) {
-        moviesService.delete(id).success(function(response) {
+        moviesService.delete(id)
+            .success(function(response) {
             console.log("Deleted id: " + id);
+            refresh();
+        });
+    }
+    
+    $scope.like = function(id) {
+        moviesService.find(id)
+            .success(function(data) {
+            data.likes++;
+            moviesService.update(id, data);
+            console.log("Likes: " + data.likes);
             refresh();
         });
     }
