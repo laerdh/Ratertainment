@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="movie in movielist">
+                    <tr ng-repeat="movie in movielist | orderBy : '-likes' ">
                         <td><img src="{{ movie.image_url }}" width="80px" height="80px"/></td>
                         <td>{{ movie.title }}</td>
                         <td>{{ movie.year }}</td>
