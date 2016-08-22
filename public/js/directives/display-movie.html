@@ -1,0 +1,13 @@
+<div class="movieDiv col-md-3 col-xs-12"> <img class="marginTop15 img-responsive" src="{{ movie.image_url }}" />
+    <h3>{{ movie.title }}</h3>
+    <h4>{{ movie.year}}</h4>
+    <p>{{ movie.category}}</p>
+    <p>{{ movie.likes}}</p>
+    <div>
+        <button type="button" class="like btn btn-info" aria-label="Like"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+        <button type="button" class="dislike btn btn-info" aria-label="Dislike"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
+    </div>
+    <div>
+        <button type="button" class="btn btn-info" aria-label="Delete" ng-click="deleteMovie(movie._id)"> <span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+</div>
