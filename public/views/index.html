@@ -6,6 +6,7 @@
         
         <!-- Load CSS -->
         <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         
         <!-- Load JS -->
@@ -24,55 +25,21 @@
                 <p class="navbar-text pull-right" id="loginState">{{ greeting }}</p>
             </nav>
             
-            <!-- Angular Content -->
-            <table ng-table="tableMovies" class="table table-hover">
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td><b>Title</b></td>
-                        <td><b>Year</b></td>
-                        <td><b>Category</b></td>
-                        <td><b>Likes</b></td>
-                        <td><b>Your opinion</b></td>
-                        <td><b>Favorite</b></td>
-                        <td><b>Admin</b></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="movie in movielist | orderBy : '-likes' ">
-                        <td><img src="{{ movie.image_url }}" width="80px" height="80px"/></td>
-                        <td>{{ movie.title }}</td>
-                        <td>{{ movie.year }}</td>
-                        <td>{{ movie.category }}</td>
-                        <td>{{ movie.likes }}</td>
-                        <td>
-                            <button type="button" class="like btn btn-info" aria-label="Like" ng-click="like(movie._id)">
-                                <span class="glyphicon glyphicon-thumbs-up"></span>
-                            </button>
-                            <button type="button" class="dislike btn btn-info" aria-label="Dislike" ng-click="dislike(movie._id)">
-                                <span class="glyphicon glyphicon-thumbs-down"></span>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="favbutton btn btn-info" aria-label="Favorite">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-info" aria-label="Delete" ng-click="deleteMovie(movie._id)">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <ul class="pagination">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-            </ul>
+            <div class="col-md-3 movieBox" ng-repeat="movie in movielist | orderBy : '-likes'">
+                <img src="{{ movie.image_url}}" width="100%" height="250px"/>
+                <h2>{{ movie.title | limitTo: 20 }}</h2>
+                <hr class="box-divider"/>
+                <div class="movieBox-info">
+                    <p><span style="color:#E37B40">Year:</span> {{ movie.year }}</p>
+                    <p><span style="color:#E37B40">Category:</span> {{ movie.category }}</p>
+                </div>
+                <hr class="box-divider"/>
+                <p>{{ movie.likes }} 
+                    <span class="glyphicon glyphicon-thumbs-up" ng-click="like(movie._id)"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" style="color:#E37B40" ng-click="dislike(movie._id)"></span>
+                </p>
+            </div>
         </div>
-        
         
         <!-- Modal -->
         <div id="addMovieModal" class="modal fade" role="dialog">
