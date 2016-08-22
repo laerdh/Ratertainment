@@ -1,9 +1,40 @@
-@charset 'utf-8';
+/*
+color palett:
 
+#C63D0F - rød
+#3B3783 - svart
+#FDF3E7 - hvit
+#7E8F7C - grønn
+
+*/
+
+@charset 'utf-8';
 html {
     margin: 10px;
 }
 
+body {
+    /* background-color: #C63D0F;*/
+    color: #020207;
+}
+
 .navbar > button {
     margin-right: 3px;
+}
+
+.navbar {
+    background-color: #FDF3E7;
+}
+
+.movieDiv {
+    border: 1px black solid;
+    /*  width: 150px;*/
+}
+
+.marginTop15 {
+   /* width="80px";
+    height="80px";*/
+    
+  /*  height: 300px;*/
+    margin-top: 15px;
 }

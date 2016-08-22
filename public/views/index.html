@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< Updated upstream
     <head>
         <meta charset="UTF-8">
         <title>Raitertainment</title>
@@ -72,99 +73,129 @@
                 <li><a href="#">4</a></li>
             </ul>
         </div>
-        
-        
-        <!-- Modal -->
-        <div id="addMovieModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+=======
 
+<head>
+    <meta charset="UTF-8">
+    <title>Raitertainment</title>
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Load JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="Ratertainment" ng-controller="MainController">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header"> <a class="navbar-brand" href="/"><b>R</b>atertainment</a> </div>
+            <button type="button" class="btn btn-info navbar-btn" id="signIn">Sign in</button>
+            <p class="navbar-text pull-right" id="loginState">{{ greeting }}</p>
+        </nav>
+        <!-- Angular Content -->
+>>>>>>> Stashed changes
+        
+        
+
+            <div ng-repeat="movie in movielist" class="movieDiv col-md-3 col-xs-12"> 
+                <img class="marginTop15 img-responsive" src="{{ movie.image_url }}" />
+                <h3>{{ movie.title }}</h3>
+                <h4>{{ movie.year}}</h4>
+                <p>{{ movie.category}}</p>
+                <p>{{ movie.likes}}</p>
+                <div>
+                    <button type="button" class="like btn btn-info" aria-label="Like"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+                    <button type="button" class="dislike btn btn-info" aria-label="Dislike"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
+                </div>
+                <div>
+                <button type="button" class="btn btn-info" aria-label="Delete" ng-click="deleteMovie(movie._id)"> 
+                <span class="glyphicon glyphicon-trash"></span></button>
+                </div>
+            </div>
+    
+      <!--  <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+        </ul>-->
+    </div>
+    <!-- Modal -->
+    <div id="addMovieModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
             <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add movie</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="title">Title:</label>
-                            <input type="text" class="form-control" ng-model="movie.title" name="title" id="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="year">Year:</label>
-                            <input type="number" class="form-control" ng-model="movie.year" name="year" id="year">
-                        </div>
-                        <div class="form-group">
-                            <label for="category">Category:</label>
-                            <input type="text" class="form-control" ng-model="movie.category" name="category" id="category">
-                        </div>
-                        <div class="form-group">
-                            <label for="imageUrl">Image URL:</label>
-                            <input type="text" class="form-control" ng-model="movie.image_url" name="image_url" id="imageUrl">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" id="addMovie" ng-click="addMovie()">Add</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add movie</h4> </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" ng-model="movie.title" name="title" id="title"> </div>
+                    <div class="form-group">
+                        <label for="year">Year:</label>
+                        <input type="number" class="form-control" ng-model="movie.year" name="year" id="year"> </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <input type="text" class="form-control" ng-model="movie.category" name="category" id="category"> </div>
+                    <div class="form-group">
+                        <label for="imageUrl">Image URL:</label>
+                        <input type="text" class="form-control" ng-model="movie.image_url" name="image_url" id="imageUrl"> </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="addMovie" ng-click="addMovie()">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
-        
-        <!-- Modules -->
-        <script src="js/app.js"></script>
-        
-        <!-- Controllers -->
-        <script src="js/controllers/MainController.js"></script>
-        
-        <!-- Services -->
-        <script src="js/services/MovieService.js"></script>
-        
-        <!-- Just for fun -->
-        <script>
-            $(document).ready(function() {
-                $('#loginState').hide();
-                
-                // Dummy functionality
-                // Just for testing purposes
-                $('#signIn').click(function(e) {
-                    $(this).text(function(i, text) {
-                        var profileBtn = "<button type='button' class='btn btn-info navbar-btn' id='profileBtn'>Profile</button>";
-                        var addBtn = "<button type='button' class='btn btn-info navbar-btn' id='addBtn' data-toggle='modal' data-target='#addMovieModal'>Add movie</button>";
-                        
-                        if (text === "Sign in") {
-                            $(profileBtn).insertAfter("#signIn");
-                            $(addBtn).insertAfter("#profileBtn");
-                            return "Log out";
-                        } else {
-                            $('#profileBtn').remove();
-                            $('#addBtn').remove();
-                            return "Sign in";
-                        }
-                        
-                    });
-                    
-                    $('#loginState').toggle();
+    </div>
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+    <!-- Services -->
+    <script src="js/services/MovieService.js"></script>
+    <!-- Just for fun -->
+    <script>
+        $(document).ready(function () {
+            $('#loginState').hide();
+            // Dummy functionality
+            // Just for testing purposes
+            $('#signIn').click(function (e) {
+                $(this).text(function (i, text) {
+                    var profileBtn = "<button type='button' class='btn btn-info navbar-btn' id='profileBtn'>Profile</button>";
+                    var addBtn = "<button type='button' class='btn btn-info navbar-btn' id='addBtn' data-toggle='modal' data-target='#addMovieModal'>Add movie</button>";
+                    if (text === "Sign in") {
+                        $(profileBtn).insertAfter("#signIn");
+                        $(addBtn).insertAfter("#profileBtn");
+                        return "Log out";
+                    }
+                    else {
+                        $('#profileBtn').remove();
+                        $('#addBtn').remove();
+                        return "Sign in";
+                    }
                 });
-                
-
-                $(".favbutton").click(function() {
-                    $(this).removeClass("btn-info").addClass("btn-warning");
-                });
-                
-                $(".like").click(function() {
-                    $(this).removeClass("btn-info").addClass("btn-success");
-                });
-                
-                $(".dislike").click(function() {
-                    $(this).removeClass("btn-info").addClass("btn-danger");
-                });
-                
-                
-                // POST form data
-                $("#addMovie").click(function() {
-                    $("#addMovieModal").modal('hide');
-                });
+                $('#loginState').toggle();
             });
-        </script>
-    </body>
+            $(".favbutton").click(function () {
+                $(this).removeClass("btn-info").addClass("btn-warning");
+            });
+            $(".like").click(function () {
+                $(this).removeClass("btn-info").addClass("btn-success");
+            });
+            $(".dislike").click(function () {
+                $(this).removeClass("btn-info").addClass("btn-danger");
+            });
+            // POST form data
+            $("#addMovie").click(function () {
+                $("#addMovieModal").modal('hide');
+            });
+        });
+    </script>
+</body>
+
 </html>
