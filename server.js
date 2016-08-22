@@ -3,10 +3,12 @@
 // modules
 var express         = require('express');
 var app             = express();
+var http            = require('http').Server(app);
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var mongojs         = require('mongojs');
 var db              = mongojs('ratertainment', ['ratertainment']);
+var io              = require('socket.io')(http);
 
 
 // config files
@@ -43,11 +45,28 @@ require('./app/routes')(app, db, mongojs);
 
 
 // start app
-app.listen(port);
+http.listen(8080, function() {
+    console.log("Listening on port: " + port);
+});
 
 
-// print server status
-console.log('Server running on port' + port);
+// socket.io server
+io.on('connection', function(socket) {
+    console.log('WS: A user connected');
+    socket.on('disconnect', function() {
+        console.log('WS: A user disconnected');
+    });
+    
+    socket.on('like', function() {
+        console.log("Like event");
+        io.emit('updateLikes');
+    });
+    
+    socket.on('dislike', function() {
+        console.log("Dislike event");
+        io.emit('updateDislikes');
+    });
+});
 
 
 // expose app

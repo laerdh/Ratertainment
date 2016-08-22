@@ -1,4 +1,4 @@
-app.controller('MainController', ['$scope', 'moviesService', function($scope, moviesService) {
+app.controller('MainController', ['$scope', 'moviesService', 'socket', function($scope, moviesService, socket) {
     
     $scope.greeting = "Welcome, Lars Dahl";
     
@@ -32,7 +32,8 @@ app.controller('MainController', ['$scope', 'moviesService', function($scope, mo
                 data.likes++;
                 moviesService.update(id, data);
                 console.log("Likes: " + data.likes);
-                refresh();
+            
+                socket.emit('like');
         });
     }
     
@@ -42,8 +43,21 @@ app.controller('MainController', ['$scope', 'moviesService', function($scope, mo
                 data.likes--;
                 moviesService.update(id, data);
                 console.log("Dislikes: " + data.likes);
-                refresh();
+            
+                socket.emit('dislike');
         });
     }
-
+    
+    
+    // socket.io
+    // websocket client listeners
+    socket.on('updateLikes', function() {
+        console.log("Got a WS request, fetching data");
+        refresh();
+    });
+    
+    socket.on('updateDislikes', function() {
+        console.log("Got a WS request, fetching data");
+        refresh();
+    });
 }]);

@@ -119,6 +119,10 @@
         <!-- Services -->
         <script src="js/services/MovieService.js"></script>
         
+        <!-- Socket.io client -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/services/socket.js"></script>
+        
         <!-- Just for fun -->
         <script>
             $(document).ready(function() {
@@ -151,6 +155,7 @@
                     $(this).removeClass("btn-info").addClass("btn-warning");
                 });
                 
+                // use websocket to report
                 $(".like").click(function() {
                     $(this).removeClass("btn-info").addClass("btn-success");
                 });
