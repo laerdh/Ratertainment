@@ -29,6 +29,8 @@ body {
 .movieDiv {
     border: 1px black solid;
     /*  width: 150px;*/
+    border-radius: 10px;
+    margin-left: 15px;
 }
 
 .marginTop15 {
